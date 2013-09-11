@@ -2,9 +2,8 @@
 -- version 4.0.3
 -- http://www.phpmyadmin.net
 --
---
 -- Хост: localhost
--- Час створення: Вер 11 2013 р., 21:10
+-- Час створення: Вер 11 2013 р., 22:24
 -- Версія сервера: 5.5.25
 -- Версія PHP: 5.2.12
 
@@ -57,7 +56,15 @@ CREATE TABLE IF NOT EXISTS `lectors` (
   `lector_emails` text NOT NULL,
   `passwd` varchar(255) NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Дамп даних таблиці `lectors`
+--
+
+INSERT INTO `lectors` (`user_id`, `lector_name`, `lector_position`, `lector_emails`, `passwd`) VALUES
+(1, 'Корытко Юлия Николаевна', 'Кандидат технических наук', 'juliakorytko@gmail.com', ''),
+(2, 'Асютин Алексей Дмитриевич', 'Асистент', 'sutok85@gmail.com', '');
 
 -- --------------------------------------------------------
 
@@ -84,7 +91,15 @@ CREATE TABLE IF NOT EXISTS `roles` (
   `user_id` int(10) NOT NULL AUTO_INCREMENT,
   `user_role` int(1) NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Дамп даних таблиці `roles`
+--
+
+INSERT INTO `roles` (`user_id`, `user_role`) VALUES
+(1, 0),
+(2, 1);
 
 -- --------------------------------------------------------
 
