@@ -1,16 +1,4 @@
 
-lectors 	
-Add field
-lector_id 	int(10) 	
-lector_name 	text(255) 	
-lector_position 	text(255) 	
-lector_email 	text(255) 	
-lector_login 	text(10) 	
-lector_password 	text(10) 	
-subjects 	
-Add field
-subject_id 	int(10) 	
-subject_title 	text(255) 	
 
 CREATE TABLE `lectors` (
   `lector_id` INT(10) NOT NULL AUTO_INCREMENT,
