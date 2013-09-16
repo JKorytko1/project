@@ -45,18 +45,22 @@ header("Content-Type: text/html; charset=utf-8"); // определяем код
 		?>
 </div>
 <div class="links">
-<a href="">Это ссылка</a>
+<a href="lectors.php" >Lectors</a>
 </div>
 <div class="links">
-<a href="">Это ссылка</a>
+<a href="subjects.php">Subjects</a>
 </div>
 <div class="links">
-<a href="">Это ссылка</a>
+<a href="students.php">Students</a>
 </div>
 <div class="links">
-<a href="">Это ссылка</a>
+<a href="grades.php">Grades</a>
+</div>
+<div class="links">
+<a href="index.php">Home</a>
 </div>
 </div>
 <center>
 </body>
+</html>
 </html>
