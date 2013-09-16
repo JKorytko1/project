@@ -1,4 +1,5 @@
 <?php
+
 // Соединяемся с сервером базы данных
 require 'connection.php';
 
