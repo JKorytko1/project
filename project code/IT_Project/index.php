@@ -23,12 +23,12 @@ header("Content-Type: text/html; charset=utf-8"); // определяем код
 				echo '<label>логин </label>';
 			print_r ($_SESSION['login']);
 			echo '</div>';
-			echo '<a href="regestration/logout.php">Завершить сеанс</a>';
+			echo '<a href="registration/logout.php">Завершить сеанс</a>';
 			
 		}
 		else
 		{
-		echo '<form action="regestration/form_auth.php" METHOD="POST">
+		echo '<form action="registration/form_auth.php" METHOD="POST">
 			<div>
 				<label>логин</label>
 				<input name="login" type="text" />
