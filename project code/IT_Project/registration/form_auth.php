@@ -1,6 +1,6 @@
 <?php
 // Соединяемся с сервером базы данных
-require '..config.php';
+require '../config.php';
 if (isset($_POST['login'])) 
 {
 				$login = $_POST['login']; 
