@@ -1,6 +1,6 @@
 <?php
 // Соединяемся с сервером базы данных
-require 'config.php';
+require 'connection.php';
 
 header("Content-Type: text/html; charset=utf-8"); // определяем кодировку выводимой информации с БД
 ?>
