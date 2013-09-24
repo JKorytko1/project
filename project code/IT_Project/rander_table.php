@@ -1,13 +1,12 @@
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title></title>
     </head>
     <body>
         <?php
 		
 		function rander($tableName, $excludedFields){
-		include ('menu.php');
+		include ('index.php');
         include ('connection.php');
 		
 	
@@ -15,7 +14,7 @@
         
         $q = mysql_query("SELECT * FROM $tableName");
         echo "<table border=1>";
-            echo "<tr>\n";                                              //шапка таблицы
+            echo "<tr>\n";                                              //С€Р°РїРєР° С‚Р°Р±Р»РёС†С‹
             for ($f = 0; $f < mysql_num_fields($q); $f++) {
                     echo "<th>". mysql_field_name($q, $f)."</th>";
             }

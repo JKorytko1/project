@@ -2,15 +2,13 @@
 
 // Соединяемся с сервером базы данных
 require 'connection.php';
-
-header("Content-Type: text/html; charset=utf-8"); // определяем кодировку выводимой информации с БД
 ?>
 <!-- Ниже представлен код главной страници в HTML -->
 <html>
 <head>
-<title>Progect I-20б and I-29вс</title>
+<title>Project I-20б and I-29вс</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <link rel="stylesheet" type="text/css" href="css/index.css">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
 <center>
@@ -43,10 +41,11 @@ header("Content-Type: text/html; charset=utf-8"); // определяем код
 				</div>
 		</form>' ;
 		}
+		
 		?>
 </div>
 <div class="links">
-<a href="lectors.php" >Lectors</a>
+<a href="lectors.php" target="_self" >Lectors</a>
 </div>
 <div class="links">
 <a href="subjects.php">Subjects</a>
@@ -55,13 +54,22 @@ header("Content-Type: text/html; charset=utf-8"); // определяем код
 <a href="students.php">Students</a>
 </div>
 <div class="links">
-<a href="grades.php">Grades</a>
+<a href="groups.php">Groups</a>
 </div>
 <div class="links">
 <a href="index.php">Home</a>
 </div>
-</div>
 <center>
+	<div class="table">
+	<?php
+		if ($_GET['page']) include($_GET['page']);
+	?>
+	</div>
+	</center>
+</div>
+
+	
+</center>
 </body>
 </html>
 </html>
