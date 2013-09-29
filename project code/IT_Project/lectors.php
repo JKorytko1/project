@@ -18,8 +18,8 @@
 		};
 		echo"</table>";
 	}
- if ((empty($_SESSION['id'])) && empty($_SESSION['login']) ) {
+ /*if ((empty($_SESSION['id'])) && empty($_SESSION['login']) ) {
  	echo "<tr><td>".$row['lector_name']."</td><td>".$row['lector_position']."</td><td>".$row['lector_email']."</td>
 		</tr>";
- }
+ }*/
 ?>
