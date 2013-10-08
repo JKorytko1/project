@@ -1,14 +1,25 @@
 <?php
-
-// Соединяемся с сервером базы данных
 require 'connection.php';
+$tmp=$_GET['info'];
 ?>
-<!-- Ниже представлен код главной страници в HTML -->
 <html>
 <head>
 <title>Project I-20б and I-29вс</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <link rel="stylesheet" type="text/css" href="css/index.css">
+  <style>
+body {
+font: 11px Tahoma, "Trebuchet MS", Tahoma, sans-serif; line-height: 1.6em; color: #222;
+ }
+.search
+{
+margin-top:110px;
+}
+.search input
+{
+border-radius:5px;
+}
+</style>
 </head>
 <body>
 <center>
@@ -59,19 +70,34 @@ require 'connection.php';
 <div class="links">
 <a href="index.php">Home</a>
 </div>
-<center>
-	<?
-	include('search/index.php');
-	?>
-	<div class="table">
-	<?php
-		if ($_GET['page']) include($_GET['page']);
-	?>
-	</div>
-	</center>
+<div class="search">
+	<center>
+<form action="search.php" method="post">
+<input name="search" type="text" id="search" size="60">
+</form>
+</center>
 </div>
-
-	
+		<div>
+		<?
+		
+		if($tmp=='lectors')
+		{
+			include('lectors.php');
+		}
+		if($tmp=='subjects')
+		{
+			include('subjects.php');
+		}
+		if($tmp=='students')
+		{
+			include('students.php');
+		}
+		if($tmp=='groups')
+		{
+			include('groups.php');
+		}
+		?>
+		</div>
 </center>
 </body>
 </html>

@@ -1,5 +1,7 @@
 <?
 	include('connection.php');
+	include('index.php');
+	
 	$studentId=$_GET['studentId'];
 	//$query="Select * from students where student_id=".$studentId;
 	//$result=mysql_query($query);
@@ -9,14 +11,14 @@
 	$row = mysql_fetch_array($result);
 	echo $row['student_name']; 
 	echo "<table border = 1>";
-	$gradesQuery = "Select * from grades where student_id=".$studentId;
-	$resultSt=mysql_query($gradesQuery);
-
-	$rowGradesResult = mysql_fetch_array($resultSt);
+	
+	$queryStudent = "Select * from grades where student_id=".$studentId;
+	$resultStudent=mysql_query($queryStudent);
+	$rowStudent = mysql_fetch_array($resultStudent);
 	echo "<tr>";
 	echo"<td>"
-		.$rowGradesResult['grade_first']
-		.$rowGradesResult['grade_second']
+		.$rowStudent['grade_first']
+		.$rowStudent['grade_second']
 		."</td>";
 	
 	

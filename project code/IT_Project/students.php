@@ -1,12 +1,6 @@
 <?
   include('connection.php');
-  if (empty($_GET['page']))
-  {
-  $_GET['page'] = "students.php";
-  include("index.php");
-  }
-  else{
- 
+
    $query="Select * from students";
     $result=mysql_query($query);
     echo"<table border=2 cellpadding=0 cellspacing=0>";
@@ -20,6 +14,6 @@
 	</tr>";
     }
     echo"</table>";
-	}
+
  
 ?>
