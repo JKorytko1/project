@@ -1,6 +1,9 @@
 <?php
+session_start();
 require 'connection.php';
-$tmp=$_GET['info'];
+		$tmp=$_GET['info'];
+		$_SESSION['search']=$tmp;
+		
 ?>
 <html>
 <head>
@@ -8,9 +11,6 @@ $tmp=$_GET['info'];
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <link rel="stylesheet" type="text/css" href="css/index.css">
   <style>
-body {
-font: 11px Tahoma, "Trebuchet MS", Tahoma, sans-serif; line-height: 1.6em; color: #222;
- }
 .search
 {
 margin-top:110px;
@@ -72,14 +72,14 @@ border-radius:5px;
 </div>
 <div class="search">
 	<center>
-<form action="search.php" method="post">
+<form action="search.php" method="GET">
 <input name="search" type="text" id="search" size="60">
 </form>
 </center>
 </div>
 		<div>
 		<?
-		
+
 		if($tmp=='lectors')
 		{
 			include('lectors.php');
