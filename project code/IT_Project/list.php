@@ -11,6 +11,9 @@ require 'connection.php';
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <link rel="stylesheet" type="text/css" href="css/index.css">
   <style>
+body {
+font: 11px Tahoma, "Trebuchet MS", Tahoma, sans-serif; line-height: 1.6em; color: #222;
+ }
 .search
 {
 margin-top:110px;
@@ -72,7 +75,7 @@ border-radius:5px;
 </div>
 <div class="search">
 	<center>
-<form action="search.php" method="GET">
+<form action="search.php?table=<?print_r($tmp);?>" method="GET">
 <input name="search" type="text" id="search" size="60">
 </form>
 </center>

@@ -1,17 +1,13 @@
 <?
-	include('../connection.php');
-	header('Content-Type: application/json; charset=utf-8');
-	mysql_query('SET NAMES utf8');
-  	$groupId=$_GET['groupId'];
-	$getGroups_details_query = mysql_query("select * from groups where group_id=".$groupId);
-	$getGroups_details_row_name = mysql_fetch_array($getGroups_details_query);
-	$getGroups_details_queryStudent = mysql_query("Select * from students where group_id=".$groupId);
-	$getGroups_details_count=mysql_num_rows($getGroups_details_queryStudent);
-	for ($i=0; $i<$getGroups_details_count; $i++)
-	{
-		$getGroups_details_row = mysql_fetch_array($getGroups_details_queryStudent);
-		$getGroups_details_obj[$i]=array('student_id'=>$getGroups_details_row['student_id'], 'group_id'=>$groupId,'student_name'=>$getGroups_details_row['student_name']);
-	}
-	echo json_encode($getGroups_details_obj);
+   include('../connection.php');
+   header('Content-Type: application/json; charset=utf-8');
+   mysql_query('SET NAMES utf8');
+    $query1=mysql_query("Select * from groups");
+    $test=mysql_num_rows($query1);
+	for ($i = 0; $i < $test; $i++)
+    {
+		$row_group_mas = mysql_fetch_array($query1);
+		$object[$i]=array('group_id'=>$row_group_mas['group_id'], 'group_name'=>$row_group_mas['group_name']);
+    }  
+	echo json_encode($object);
 ?>
-

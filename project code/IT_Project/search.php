@@ -87,8 +87,7 @@ $search = addslashes($search);
 $search = htmlspecialchars($search);
 $search = stripslashes($search);
 $len=strlen($search);
-	if(($search == '') OR ($len<'2'))
-	{
+	if(($search == '') OR ($len<'2')){
 		exit;
 	}
 	else

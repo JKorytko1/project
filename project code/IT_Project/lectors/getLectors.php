@@ -10,5 +10,5 @@
 		$obj_lectors[$i]=array('lector_id'=>$row_lectors_mas['lector_id'], 'lector_name'=>$row_lectors_mas['lector_name'],
 		'lector_position'=>$row_lectors_mas['lector_position'],'lector_email'=>$row_lectors_mas['lector_email'],'lector_login'=>$row_lectors_mas['lector_login']);
     }  
-	echo json_encode($obj_lectors);
+	echo print_r($obj_lectors);
 ?>
