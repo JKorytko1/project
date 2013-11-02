@@ -16,16 +16,17 @@ if (isset($_POST['login']))
 					exit ("Введите пароль");
 				}
 			}
-			$user = mysql_query("SELECT * FROM lectors WHERE lector_login='$login' AND lector_password='$password'");
+			$user = mysql_query("SELECT lector_id,student_id FROM lectors,students WHERE (lector_login='$login' AND lector_password='$password') OR 
+								(student_email='$login' AND pwd='$password') OR (parent_email='$login' AND pwd='$password')");
 			$id_user = mysql_fetch_array($user);
-			if (!empty($id_user['lector_id'])) //РАСПРЕДЕЛЕНИЕ ПРАВ ДОСТУПА
+			if (!empty($id_user['lector_id']) || !empty($id_user['student_id'])) //РАСПРЕДЕЛЕНИЕ ПРАВ ДОСТУПА
 			{
 				session_start();
 				$_SESSION['password']=$password; 
 				$_SESSION['login']=$login; 
-				$_SESSION['id']=$id_user['lector_id'];
+				$_SESSION['id']=$id_user['lector_id'] || $id_user['student_id'];
 				exit("<html><head><meta    http-equiv='Refresh' content='0;    URL=../index.php'></head></html>");
 
 			}
 	  
-?>
+
