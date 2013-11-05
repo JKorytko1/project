@@ -45,7 +45,7 @@
 			."</td>";
 			
 			
-			
+	//d		
 		echo"<td>".
 			 "<a href= \"vedomost.php?groupId=".$rowSemester['group_id']."&subjectId=".$rowSemester['subject_id']."\">".$rowSemester['semester']."</a>"
 			
