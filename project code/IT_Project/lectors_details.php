@@ -1,4 +1,4 @@
-<?
+﻿<?
   include('connection.php');
   include('index.php');
   $lectorId=$_GET['lectorId'];
@@ -31,32 +31,43 @@
 	//$gradesQuery = "Select * from grades where lector_id=".$lectorId;
 	//$resultSt=mysql_query($gradesQuery);
 	
-	$querySubject = "SELECT subject_title, g.group_id, group_name, s.subject_id, semester FROM subjects as s join groups_subjects as
-  gs on s.subject_id=gs.subject_id join groups as g on gs.group_id=g.group_id WHERE s.lector_id=".$lectorId;
+	$querySubject = "Select * from subjects where lector_id=".$lectorId;
 	$resultSubject=mysql_query($querySubject);
+	
+	
+	
     while($rowSubject = mysql_fetch_array($resultSubject)){
+		$querySemester = "SELECT * from groups_subjects where subject_id in(select subject_id from subjects where lector_id in(select lector_id from lectors where lector_id=".$lectorId."))";
+           
+		$resultSemester=mysql_query($querySemester);
+		$rowSemester = mysql_fetch_array($resultSemester);
+		
 		
 		echo "<tr>";
 		
-		  echo "<td>"
-			.$rowSubject['subject_title']
-			
+		  echo "<td>".
+			"<a href= \"vedomost.php?groupId=".$rowSemester['group_id']."&subjectId=".$rowSubject['subject_id']."\">".$rowSubject['subject_title']."</a>"
 			."</td>";
 			
 			
 			
-  
-		
-		echo"<td>"
-			.$rowSubject['group_name']
-			
-			."</td>";
-			
+		$queryGroup = "SELECT subject_title, group_name FROM subjects as s JOIN
+                   groups_subjects as gs on s.subject_id = gs.subject_id JOIN groups as g on gs.group_id = g.group_id WHERE s.lector_id=".$lectorId."";
+		$resultGroup=mysql_query($queryGroup);
+		$rowGroup = mysql_fetch_array($resultGroup);
 		
 		echo"<td>".
-			 "<a href= \"vedomost.php?groupId=".$rowSubject['group_id']."&subjectId=".$rowSubject['subject_id']."\">".$rowSubject['semester']."</a>"
+			 "<a href= \"vedomost.php?groupId=".$rowSemester['group_id']."&subjectId=".$rowSubject['subject_id']."\">".$rowGroup['group_name']."</a>"
 			
 			."</td>";
+			
+		
+		
+		echo"<td>".
+			 "<a href= \"vedomost.php?groupId=".$rowSemester['group_id']."&subjectId=".$rowSubject['subject_id']."\">".$rowSemester['semester']."</a>"
+			
+			."</td>";
+			
 			
 		
 		
@@ -64,6 +75,8 @@
 		echo "</tr>";
 		
 	}
+		
+	
 	
 	echo "</table>";
 ?>
