@@ -1,0 +1,54 @@
+.all
+{
+	width: 1000px;
+	border: 1px dashed black;
+}
+.links
+{
+	border: 1px dashed black;
+	width: 100px; 
+	height: 30px;
+	margin:10px;
+	float:right;
+}
+
+
+.links:hover
+{
+	border: 1px dashed black;
+	width: 100px; 
+	height: 30px;
+	margin:10px;
+	float:right;
+	background-color:#dcdcdc;
+}
+.links a
+{
+	margin-top:15px;
+	text-decoration: none;
+	color: #000;
+}
+.links a:hover
+{
+	margin-top:15px;
+	text-decoration: none;
+	color: #fff;
+}
+.auth
+{
+	margin: 5px;
+	border: 1px dashed black;
+	width: 250px; 
+	float:right;
+}
+a
+{
+	margin-top:15px;
+	text-decoration: none;
+	color: #000;
+}
+.table
+{
+	margin-top: 100px;
+	text-align:left;
+}
