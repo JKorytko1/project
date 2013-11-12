@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.5
+-- version 4.0.3
 -- http://www.phpmyadmin.net
 --
--- Хост: 127.0.0.1:3306
--- Время создания: Ноя 03 2013 г., 23:35
--- Версия сервера: 5.1.71-community-log
--- Версия PHP: 5.4.17
+-- Хост: localhost
+-- Час створення: Лис 12 2013 р., 18:53
+-- Версія сервера: 5.5.23
+-- Версія PHP: 5.3.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,15 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- База данных: `project_bd`
+-- База даних: `project_bd`
 --
+CREATE DATABASE IF NOT EXISTS `project_bd` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `project_bd`;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `grades`
+-- Структура таблиці `grades`
 --
 
 CREATE TABLE IF NOT EXISTS `grades` (
@@ -35,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `grades` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `grades`
+-- Дамп даних таблиці `grades`
 --
 
 INSERT INTO `grades` (`group_module_id`, `student_id`, `grade`) VALUES
@@ -1318,43 +1320,44 @@ INSERT INTO `grades` (`group_module_id`, `student_id`, `grade`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `groups`
+-- Структура таблиці `groups`
 --
 
 CREATE TABLE IF NOT EXISTS `groups` (
   `group_id` int(10) NOT NULL AUTO_INCREMENT,
   `group_name` text,
+  `specialty` text,
   PRIMARY KEY (`group_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
--- Дамп данных таблицы `groups`
+-- Дамп даних таблиці `groups`
 --
 
-INSERT INTO `groups` (`group_id`, `group_name`) VALUES
-(1, 'И-20б (2010)'),
-(2, 'И-20а (2010)'),
-(3, 'И-21а (2011)'),
-(4, 'И-21б (2011)'),
-(5, 'И-22а (2012)'),
-(6, 'И-22б (2012)'),
-(7, 'И-23а (2013)'),
-(8, 'И-23б (2013)'),
-(9, 'И-29АМ (2009)'),
-(10, 'И-29АС (2009)'),
-(11, 'И-29БМ (2009)'),
-(12, 'И-29БС (2009)'),
-(13, 'И-29ВС (2009)'),
-(16, 'И-28АМ (2008)'),
-(17, 'И-28АС (2008)'),
-(18, 'И-28БМ (2008)'),
-(19, 'И-28БС (2008)'),
-(20, 'И-28ВС (2008)');
+INSERT INTO `groups` (`group_id`, `group_name`, `specialty`) VALUES
+(1, 'И-20б (2010)', 'Информатика'),
+(2, 'И-20а (2010)', 'Прикладная математика'),
+(3, 'И-21а (2011)', 'Прикладная математика'),
+(4, 'И-21б (2011)', 'Информатика'),
+(5, 'И-22а (2012)', 'Прикладная математика'),
+(6, 'И-22б (2012)', 'Информатика'),
+(7, 'И-23а (2013)', 'Прикладная математика'),
+(8, 'И-23б (2013)', 'Информатика'),
+(9, 'И-29АМ (2009)', 'Прикладная математика'),
+(10, 'И-29АС (2009)', 'Прикладная математика'),
+(11, 'И-29БМ (2009)', 'Информатика'),
+(12, 'И-29БС (2009)', 'Информатика'),
+(13, 'И-29ВС (2009)', 'Системное проектирование'),
+(16, 'И-28АМ (2008)', 'Прикладная математика'),
+(17, 'И-28АС (2008)', 'Прикладная математика'),
+(18, 'И-28БМ (2008)', 'Информатика'),
+(19, 'И-28БС (2008)', 'Информатика'),
+(20, 'И-28ВС (2008)', 'Системное проектирование');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `groups_modules`
+-- Структура таблиці `groups_modules`
 --
 
 CREATE TABLE IF NOT EXISTS `groups_modules` (
@@ -1365,10 +1368,10 @@ CREATE TABLE IF NOT EXISTS `groups_modules` (
   PRIMARY KEY (`group_module_id`),
   KEY `groups_modules_fk1` (`group_id`),
   KEY `groups_modules_fk2` (`module_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=247 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=170 ;
 
 --
--- Дамп данных таблицы `groups_modules`
+-- Дамп даних таблиці `groups_modules`
 --
 
 INSERT INTO `groups_modules` (`group_module_id`, `group_id`, `module_id`, `dead_line`) VALUES
@@ -1545,7 +1548,7 @@ INSERT INTO `groups_modules` (`group_module_id`, `group_id`, `module_id`, `dead_
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `groups_subjects`
+-- Структура таблиці `groups_subjects`
 --
 
 CREATE TABLE IF NOT EXISTS `groups_subjects` (
@@ -1555,7 +1558,7 @@ CREATE TABLE IF NOT EXISTS `groups_subjects` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `groups_subjects`
+-- Дамп даних таблиці `groups_subjects`
 --
 
 INSERT INTO `groups_subjects` (`group_id`, `subject_id`, `semester`) VALUES
@@ -1621,7 +1624,7 @@ INSERT INTO `groups_subjects` (`group_id`, `subject_id`, `semester`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `lectors`
+-- Структура таблиці `lectors`
 --
 
 CREATE TABLE IF NOT EXISTS `lectors` (
@@ -1636,14 +1639,14 @@ CREATE TABLE IF NOT EXISTS `lectors` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
 
 --
--- Дамп данных таблицы `lectors`
+-- Дамп даних таблиці `lectors`
 --
 
 INSERT INTO `lectors` (`lector_id`, `lector_name`, `lector_position`, `lector_email`, `lector_login`, `lector_password`, `role`) VALUES
-(1, 'Корытко Юлия Николаевна', 'Кандидат технических наук', 'juliakorytko@gmail.com', 'julia_korytko', '1', 1),
+(1, 'Корытко Юлия Николаевна', 'Кандидат технических наук', 'juliakorytko@gmail.com', 'julia_korytko', '', NULL),
 (2, 'Асютин Алексей Дмитриевич', 'Ассистент', 'sutok85@gmail.com', 'AAsutin', '', NULL),
 (3, 'Некрасова Мария Владимирона', 'Старший преподаватель', '', 'MNekrasova', '', NULL),
-(4, 'Бреславский Дмитрий Васильевич', 'Доктор технических наук, декан факультета, заведующий кафедрой, профессор', 'brdm@kpi.kharkov.ua', 'brdm', '2', 2),
+(4, 'Бреславский Дмитрий Васильевич', 'Доктор технических наук, декан факультета, заведующий кафедрой, профессор', 'brdm@kpi.kharkov.ua', 'brdm', '1', 2),
 (5, 'Плаксий Юрий Андреевич', 'Исполняющий обязанности заведующего кафедрой, кандидат технических наук', NULL, NULL, NULL, NULL),
 (6, 'Андреев Юрий Михайлович', 'Доктор технических наук, профессор', NULL, NULL, NULL, NULL),
 (7, 'Успенский Валерий Борисович', 'Доктор технических наук, профессор', NULL, NULL, NULL, NULL),
@@ -1661,7 +1664,7 @@ INSERT INTO `lectors` (`lector_id`, `lector_name`, `lector_position`, `lector_em
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `modules`
+-- Структура таблиці `modules`
 --
 
 CREATE TABLE IF NOT EXISTS `modules` (
@@ -1673,7 +1676,7 @@ CREATE TABLE IF NOT EXISTS `modules` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=78 ;
 
 --
--- Дамп данных таблицы `modules`
+-- Дамп даних таблиці `modules`
 --
 
 INSERT INTO `modules` (`module_id`, `module_name`, `subject_id`) VALUES
@@ -1758,7 +1761,7 @@ INSERT INTO `modules` (`module_id`, `module_name`, `subject_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `students`
+-- Структура таблиці `students`
 --
 
 CREATE TABLE IF NOT EXISTS `students` (
@@ -1768,138 +1771,136 @@ CREATE TABLE IF NOT EXISTS `students` (
   `student_email` text,
   `parent_email` text NOT NULL,
   `group_id` int(10) DEFAULT NULL,
-  `role` int(1) DEFAULT NULL,
-  `pwd` int(16) DEFAULT NULL,
   PRIMARY KEY (`student_id`),
   KEY `students_fk1` (`group_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=117 ;
 
 --
--- Дамп данных таблицы `students`
+-- Дамп даних таблиці `students`
 --
 
-INSERT INTO `students` (`student_id`, `student_name`, `student_notes`, `student_email`, `parent_email`, `group_id`, `role`, `pwd`) VALUES
-(1, 'Ваколюк Яков Владимирович', 'Профорг группы', 'y.vakolyuk@profkom-khpi.org', 'mama@parent.ru', 1, 3, 1),
-(2, 'Дачко Оксана Анатольевна', NULL, 'shusterman1@yandex.ru', '', 1, NULL, NULL),
-(3, 'Лемишенко Олег Александрович', 'Староста группы', 'leplushin@gmail.com', '', 1, NULL, NULL),
-(4, 'Рожовецкий Евгений Олегович', NULL, 'reg.dfe1@gmail.com', '', 1, NULL, NULL),
-(5, 'Снопов Дмитрий Евгеньевич', NULL, 'snopovdm@gmail.com', '', 1, NULL, NULL),
-(6, 'Сирик Максим Владимирович', NULL, 'maxim.sirik@gmail.com', '', 1, NULL, NULL),
-(7, 'Торба Федор Иванович', NULL, 'fed.tor.kirzone@gmail.com', '', 1, NULL, NULL),
-(8, 'Щербина Максим Александрович', NULL, 'big-max93@mail.ru', '', 1, NULL, NULL),
-(9, 'Быковский Андрей Владимирович', NULL, 'andrewjdanov@mail.ru\r\n', '', 5, NULL, NULL),
-(10, 'Лимаренко Ольга Владимировна', NULL, 'write_s_angel@mail.ru\r\n', '', 5, NULL, NULL),
-(11, 'Марданов Дмитрий Сергеевич', NULL, 'antanta231@mail.ru\r\n', '', 5, NULL, NULL),
-(12, 'Науменко Сергей Владимирович', NULL, 's.naumenko@profkom-khpi.org', '', 5, NULL, NULL),
-(13, 'Негребецкий Роман Вячеславович', NULL, NULL, '', 5, NULL, NULL),
-(14, 'Омельчук Карина Владиславовна', NULL, NULL, '', 5, NULL, NULL),
-(15, 'Поливанный Сергей Сергеевич', NULL, 'megamenlite@mail.ru\r\n', '', 5, NULL, NULL),
-(16, 'Резцов Виталий Олегович', NULL, 'vitaliy-reztsov@ukr.net\r\n', '', 5, NULL, NULL),
-(17, 'Рыжова Ксения Костянтиновна', NULL, 'ksyha-_1995@mail.ru\r\n', '', 5, NULL, NULL),
-(18, 'Слипенчук Ирина Александровна', NULL, '2859510@mail.ru', '', 5, NULL, NULL),
-(19, 'Федорчак Алексей Юрьевич', NULL, 'ylmar_vor@mail.ru', '', 5, NULL, NULL),
-(20, 'Федорченко Владислав Андреевич', NULL, NULL, '', 5, NULL, NULL),
-(21, 'Шило Андрей Владимирович', NULL, 'spawn272@spaces.ru', '', 5, NULL, NULL),
-(22, 'Яранцева Карина Всеволодовна', NULL, 'karrinesa@mail.ru', '', 5, NULL, NULL),
-(23, 'Головач Ирина Александровна', NULL, NULL, '', 6, NULL, NULL),
-(24, 'Дрозд Анна Анатольевна', NULL, NULL, '', 6, NULL, NULL),
-(25, 'Ермаков Даниель Александрович', NULL, 'dan-ermakov@rambler.ru', '', 6, NULL, NULL),
-(26, 'Игнатьев Ярослав Витальевич', NULL, 'jar2010@mail.ru', '', 6, NULL, NULL),
-(27, 'Кириченко Ирина Юрьевна', NULL, NULL, '', 6, NULL, NULL),
-(28, 'Коновалов Николай Владимирович', NULL, 'konovalow@i.ua', '', 6, NULL, NULL),
-(29, 'Кравченко Елена Александровна', NULL, 'elena_kravchenko_1993@mail.ru', '', 6, NULL, NULL),
-(30, 'Романов Геннадий Владимирович', NULL, 'roscarius@gmail.com', '', 6, NULL, NULL),
-(31, 'Сало Дмитрий Александрович', NULL, 'dmitriyavanti@gmail.com', '', 6, NULL, NULL),
-(32, 'Сушко Александр Мкасимович', NULL, 'hohol-x@ukr.net', '', 6, NULL, NULL),
-(33, 'Илюха Илья Олегович', NULL, NULL, '', 2, NULL, NULL),
-(34, 'Коротун Лилия Александровна', NULL, NULL, '', 2, NULL, NULL),
-(35, 'Мартынюк Дмитрий Александрович', NULL, NULL, '', 2, NULL, NULL),
-(36, 'Носач Александр Андреевич', NULL, NULL, '', 2, NULL, NULL),
-(37, 'Носач Евгений Андреевич', NULL, NULL, '', 2, NULL, NULL),
-(38, 'Сахно Владислав Николаевич', NULL, NULL, '', 2, NULL, NULL),
-(39, 'Чешко Ксения Федоровна', NULL, NULL, '', 2, NULL, NULL),
-(40, 'Диденко Дмитрий Виталиевич', NULL, NULL, '', 2, NULL, NULL),
-(41, 'Хабюк Антон Сергеевич', NULL, NULL, '', 2, NULL, NULL),
-(42, 'Бакулев Владислав Валерьевич', NULL, NULL, '', 9, NULL, NULL),
-(43, 'Боса Любовь Николаевна', NULL, NULL, '', 9, NULL, NULL),
-(44, 'Бугаенко Артем Евгеньевич', NULL, NULL, '', 9, NULL, NULL),
-(45, 'Заикина Юлия Александровна', NULL, NULL, '', 9, NULL, NULL),
-(46, 'Клименко Альона Павловна', NULL, NULL, '', 9, NULL, NULL),
-(47, 'Пащенко Сергей Александрович', NULL, NULL, '', 9, NULL, NULL),
-(48, 'Подрез Анна Вячеславовна', NULL, NULL, '', 9, NULL, NULL),
-(49, 'Таран Алексей Григорьевич', NULL, NULL, '', 9, NULL, NULL),
-(50, 'Васильева Наталья Юрьевна', NULL, NULL, '', 10, NULL, NULL),
-(51, 'Красильный Александр Александрович', NULL, NULL, '', 10, NULL, NULL),
-(52, 'Крючкова Дарья Дмитриевна', NULL, NULL, '', 10, NULL, NULL),
-(53, 'Луценко Алина Андреевна', NULL, NULL, '', 10, NULL, NULL),
-(54, 'Паньова Юлианна Сергеевна', NULL, NULL, '', 10, NULL, NULL),
-(55, 'Сарай Анастасия Станиславовна', NULL, NULL, '', 10, NULL, NULL),
-(56, 'Бурлай Виктор Игоревич', NULL, NULL, '', 11, NULL, NULL),
-(57, 'Гладышев Евгений Геннадиевич', NULL, NULL, '', 11, NULL, NULL),
-(58, 'Хорошун Андрей Сергеевич', NULL, NULL, '', 11, NULL, NULL),
-(59, 'Ярошенко Диана Анатольевна', NULL, NULL, '', 11, NULL, NULL),
-(60, 'Лобова Анастасия Павловна', NULL, NULL, '', 12, NULL, NULL),
-(61, 'Найдин Максим Александрович', NULL, NULL, '', 12, NULL, NULL),
-(62, 'Берус Станислав Викторович', NULL, NULL, '', 13, NULL, NULL),
-(63, 'Будилко Александр Андреевич', NULL, NULL, '', 13, NULL, NULL),
-(64, 'Демешко Дмитрий Владимирович', NULL, NULL, '', 13, NULL, NULL),
-(65, 'Ененко Максим Игоревич', NULL, NULL, '', 13, NULL, NULL),
-(66, 'Иванова Людмила Игоревна', NULL, NULL, '', 13, NULL, NULL),
-(67, 'Малашта Максим Викторович', NULL, NULL, '', 13, NULL, NULL),
-(68, 'Сивачинский Дмитрий Иванович', NULL, NULL, '', 13, NULL, NULL),
-(69, 'Флорикян Карен Рубенович', NULL, NULL, '', 13, NULL, NULL),
-(70, 'Шаталов Петр Николаевич', NULL, NULL, '', 13, NULL, NULL),
-(71, 'Шелудченков Виталий Игоревич', NULL, NULL, '', 13, NULL, NULL),
-(72, 'Басов Александр Сергеевич', NULL, NULL, '', 16, NULL, NULL),
-(73, 'Дзюба Александр Петрович', NULL, NULL, '', 16, NULL, NULL),
-(74, 'Заплавский Евгений Олегович', NULL, NULL, '', 16, NULL, NULL),
-(75, 'Зягун Григорий Юрьевич', NULL, NULL, '', 16, NULL, NULL),
-(76, 'Лазарев Михаил Юрьевич', NULL, NULL, '', 16, NULL, NULL),
-(77, 'Леонова Наталья Валерьевна', NULL, NULL, '', 16, NULL, NULL),
-(78, 'Оприщенко Иван Анатольевич', NULL, NULL, '', 16, NULL, NULL),
-(79, 'Шевченко Татьяна Михайловна', NULL, NULL, '', 16, NULL, NULL),
-(80, 'Гончаренко Евгений Костянтинович', NULL, NULL, '', 17, NULL, NULL),
-(81, 'Карвасовский Радион Максимович', NULL, NULL, '', 17, NULL, NULL),
-(82, 'Кухарчук Андрей Андреевич', NULL, NULL, '', 17, NULL, NULL),
-(83, 'Савченко Александр Сергеевич', NULL, NULL, '', 17, NULL, NULL),
-(84, 'Сасин Денис Николаевич', NULL, NULL, '', 17, NULL, NULL),
-(85, 'Чаленко Максим Николаевич', NULL, NULL, '', 17, NULL, NULL),
-(86, 'Черкашин Евгений Игоревич', NULL, NULL, '', 17, NULL, NULL),
-(87, 'Шкарлат Владислав Алексеевич', NULL, NULL, '', 17, NULL, NULL),
-(88, 'Бобков Андрей Александрович', NULL, NULL, '', 18, NULL, NULL),
-(89, 'Грабар Дмитрий Юрьевич', NULL, NULL, '', 18, NULL, NULL),
-(90, 'Дегтярьов Евгений Олегович', NULL, NULL, '', 18, NULL, NULL),
-(91, 'Дмух Наталья Викторовна', NULL, NULL, '', 18, NULL, NULL),
-(92, 'Меркулов Вячеслав Андреевич', NULL, NULL, '', 18, NULL, NULL),
-(93, 'Михненко Ирина Тарасовна', NULL, NULL, '', 18, NULL, NULL),
-(94, 'Бойко Святослав Владимирович', NULL, NULL, '', 19, NULL, NULL),
-(95, 'Михалицкая Оксана Леонидовна', NULL, NULL, '', 19, NULL, NULL),
-(96, 'Брагин Александр Александрович', NULL, NULL, '', 20, NULL, NULL),
-(97, 'Бубись Наталья Ярославовна', NULL, NULL, '', 20, NULL, NULL),
-(98, 'Долгополова Анастасия Юрьевна', NULL, NULL, '', 20, NULL, NULL),
-(99, 'Кутковская Анастасия Владимировна', NULL, NULL, '', 20, NULL, NULL),
-(100, 'Павлюк Виталий Андреевич', NULL, NULL, '', 20, NULL, NULL),
-(101, 'Полякова Наталья Владимировна', NULL, NULL, '', 20, NULL, NULL),
-(102, 'Сушилов Станислав Валерьевич', NULL, NULL, '', 20, NULL, NULL),
-(103, 'Титаренко Татьяна Алексеевна', NULL, NULL, '', 20, NULL, NULL),
-(104, 'Витовский Антон Юрьевич', NULL, NULL, '', 3, NULL, NULL),
-(105, 'Гресько Вячеслав Николаевич', NULL, NULL, '', 3, NULL, NULL),
-(106, 'Козачок Алина Евгеньевна', NULL, NULL, '', 3, NULL, NULL),
-(107, 'Легач Александр Юрьевич', NULL, NULL, '', 3, NULL, NULL),
-(108, 'Несмиян Ксения Сергеевна', NULL, NULL, '', 3, NULL, NULL),
-(109, 'Пятикоп Анастасия Александровна', NULL, NULL, '', 3, NULL, NULL),
-(110, 'Яценко Вита Юрьевна', NULL, NULL, '', 3, NULL, NULL),
-(111, 'Батюк Олег Анатольевич', NULL, NULL, '', 4, NULL, NULL),
-(112, 'Одарченко Георгий Сергеевич', NULL, NULL, '', 4, NULL, NULL),
-(113, 'Хечоян Арсений Врежикович', NULL, NULL, '', 4, NULL, NULL),
-(114, 'Чакаров Сократ Дмитриевич', NULL, NULL, '', 4, NULL, NULL),
-(115, 'Шевченко Александр Юрьевич', NULL, NULL, '', 4, NULL, NULL),
-(116, 'Сергиенко Игорь Юрьевич', NULL, NULL, '', 4, NULL, NULL);
+INSERT INTO `students` (`student_id`, `student_name`, `student_notes`, `student_email`, `parent_email`, `group_id`) VALUES
+(1, 'Ваколюк Яков Владимирович', 'Профорг группы', 'y.vakolyuk@profkom-khpi.org', '', 1),
+(2, 'Дачко Оксана Анатольевна', NULL, 'shusterman1@yandex.ru', '', 1),
+(3, 'Лемишенко Олег Александрович', 'Староста группы', 'leplushin@gmail.com', '', 1),
+(4, 'Рожовецкий Евгений Олегович', NULL, 'reg.dfe1@gmail.com', '', 1),
+(5, 'Снопов Дмитрий Евгеньевич', NULL, 'snopovdm@gmail.com', '', 1),
+(6, 'Сирик Максим Владимирович', NULL, 'maxim.sirik@gmail.com', '', 1),
+(7, 'Торба Федор Иванович', NULL, 'fed.tor.kirzone@gmail.com', '', 1),
+(8, 'Щербина Максим Александрович', NULL, 'big-max93@mail.ru', '', 1),
+(9, 'Быковский Андрей Владимирович', NULL, 'andrewjdanov@mail.ru\r\n', '', 5),
+(10, 'Лимаренко Ольга Владимировна', NULL, 'write_s_angel@mail.ru\r\n', '', 5),
+(11, 'Марданов Дмитрий Сергеевич', NULL, 'antanta231@mail.ru\r\n', '', 5),
+(12, 'Науменко Сергей Владимирович', NULL, 's.naumenko@profkom-khpi.org', '', 5),
+(13, 'Негребецкий Роман Вячеславович', NULL, NULL, '', 5),
+(14, 'Омельчук Карина Владиславовна', NULL, NULL, '', 5),
+(15, 'Поливанный Сергей Сергеевич', NULL, 'megamenlite@mail.ru\r\n', '', 5),
+(16, 'Резцов Виталий Олегович', NULL, 'vitaliy-reztsov@ukr.net\r\n', '', 5),
+(17, 'Рыжова Ксения Костянтиновна', NULL, 'ksyha-_1995@mail.ru\r\n', '', 5),
+(18, 'Слипенчук Ирина Александровна', NULL, '2859510@mail.ru', '', 5),
+(19, 'Федорчак Алексей Юрьевич', NULL, 'ylmar_vor@mail.ru', '', 5),
+(20, 'Федорченко Владислав Андреевич', NULL, NULL, '', 5),
+(21, 'Шило Андрей Владимирович', NULL, 'spawn272@spaces.ru', '', 5),
+(22, 'Яранцева Карина Всеволодовна', NULL, 'karrinesa@mail.ru', '', 5),
+(23, 'Головач Ирина Александровна', NULL, NULL, '', 6),
+(24, 'Дрозд Анна Анатольевна', NULL, NULL, '', 6),
+(25, 'Ермаков Даниель Александрович', NULL, 'dan-ermakov@rambler.ru', '', 6),
+(26, 'Игнатьев Ярослав Витальевич', NULL, 'jar2010@mail.ru', '', 6),
+(27, 'Кириченко Ирина Юрьевна', NULL, NULL, '', 6),
+(28, 'Коновалов Николай Владимирович', NULL, 'konovalow@i.ua', '', 6),
+(29, 'Кравченко Елена Александровна', NULL, 'elena_kravchenko_1993@mail.ru', '', 6),
+(30, 'Романов Геннадий Владимирович', NULL, 'roscarius@gmail.com', '', 6),
+(31, 'Сало Дмитрий Александрович', NULL, 'dmitriyavanti@gmail.com', '', 6),
+(32, 'Сушко Александр Мкасимович', NULL, 'hohol-x@ukr.net', '', 6),
+(33, 'Илюха Илья Олегович', NULL, NULL, '', 2),
+(34, 'Коротун Лилия Александровна', NULL, NULL, '', 2),
+(35, 'Мартынюк Дмитрий Александрович', NULL, NULL, '', 2),
+(36, 'Носач Александр Андреевич', NULL, NULL, '', 2),
+(37, 'Носач Евгений Андреевич', NULL, NULL, '', 2),
+(38, 'Сахно Владислав Николаевич', NULL, NULL, '', 2),
+(39, 'Чешко Ксения Федоровна', NULL, NULL, '', 2),
+(40, 'Диденко Дмитрий Виталиевич', NULL, NULL, '', 2),
+(41, 'Хабюк Антон Сергеевич', NULL, NULL, '', 2),
+(42, 'Бакулев Владислав Валерьевич', NULL, NULL, '', 9),
+(43, 'Боса Любовь Николаевна', NULL, NULL, '', 9),
+(44, 'Бугаенко Артем Евгеньевич', NULL, NULL, '', 9),
+(45, 'Заикина Юлия Александровна', NULL, NULL, '', 9),
+(46, 'Клименко Альона Павловна', NULL, NULL, '', 9),
+(47, 'Пащенко Сергей Александрович', NULL, NULL, '', 9),
+(48, 'Подрез Анна Вячеславовна', NULL, NULL, '', 9),
+(49, 'Таран Алексей Григорьевич', NULL, NULL, '', 9),
+(50, 'Васильева Наталья Юрьевна', NULL, NULL, '', 10),
+(51, 'Красильный Александр Александрович', NULL, NULL, '', 10),
+(52, 'Крючкова Дарья Дмитриевна', NULL, NULL, '', 10),
+(53, 'Луценко Алина Андреевна', NULL, NULL, '', 10),
+(54, 'Паньова Юлианна Сергеевна', NULL, NULL, '', 10),
+(55, 'Сарай Анастасия Станиславовна', NULL, NULL, '', 10),
+(56, 'Бурлай Виктор Игоревич', NULL, NULL, '', 11),
+(57, 'Гладышев Евгений Геннадиевич', NULL, NULL, '', 11),
+(58, 'Хорошун Андрей Сергеевич', NULL, NULL, '', 11),
+(59, 'Ярошенко Диана Анатольевна', NULL, NULL, '', 11),
+(60, 'Лобова Анастасия Павловна', NULL, NULL, '', 12),
+(61, 'Найдин Максим Александрович', NULL, NULL, '', 12),
+(62, 'Берус Станислав Викторович', NULL, NULL, '', 13),
+(63, 'Будилко Александр Андреевич', NULL, NULL, '', 13),
+(64, 'Демешко Дмитрий Владимирович', NULL, NULL, '', 13),
+(65, 'Ененко Максим Игоревич', NULL, NULL, '', 13),
+(66, 'Иванова Людмила Игоревна', NULL, NULL, '', 13),
+(67, 'Малашта Максим Викторович', NULL, NULL, '', 13),
+(68, 'Сивачинский Дмитрий Иванович', NULL, NULL, '', 13),
+(69, 'Флорикян Карен Рубенович', NULL, NULL, '', 13),
+(70, 'Шаталов Петр Николаевич', NULL, NULL, '', 13),
+(71, 'Шелудченков Виталий Игоревич', NULL, NULL, '', 13),
+(72, 'Басов Александр Сергеевич', NULL, NULL, '', 16),
+(73, 'Дзюба Александр Петрович', NULL, NULL, '', 16),
+(74, 'Заплавский Евгений Олегович', NULL, NULL, '', 16),
+(75, 'Зягун Григорий Юрьевич', NULL, NULL, '', 16),
+(76, 'Лазарев Михаил Юрьевич', NULL, NULL, '', 16),
+(77, 'Леонова Наталья Валерьевна', NULL, NULL, '', 16),
+(78, 'Оприщенко Иван Анатольевич', NULL, NULL, '', 16),
+(79, 'Шевченко Татьяна Михайловна', NULL, NULL, '', 16),
+(80, 'Гончаренко Евгений Костянтинович', NULL, NULL, '', 17),
+(81, 'Карвасовский Радион Максимович', NULL, NULL, '', 17),
+(82, 'Кухарчук Андрей Андреевич', NULL, NULL, '', 17),
+(83, 'Савченко Александр Сергеевич', NULL, NULL, '', 17),
+(84, 'Сасин Денис Николаевич', NULL, NULL, '', 17),
+(85, 'Чаленко Максим Николаевич', NULL, NULL, '', 17),
+(86, 'Черкашин Евгений Игоревич', NULL, NULL, '', 17),
+(87, 'Шкарлат Владислав Алексеевич', NULL, NULL, '', 17),
+(88, 'Бобков Андрей Александрович', NULL, NULL, '', 18),
+(89, 'Грабар Дмитрий Юрьевич', NULL, NULL, '', 18),
+(90, 'Дегтярьов Евгений Олегович', NULL, NULL, '', 18),
+(91, 'Дмух Наталья Викторовна', NULL, NULL, '', 18),
+(92, 'Меркулов Вячеслав Андреевич', NULL, NULL, '', 18),
+(93, 'Михненко Ирина Тарасовна', NULL, NULL, '', 18),
+(94, 'Бойко Святослав Владимирович', NULL, NULL, '', 19),
+(95, 'Михалицкая Оксана Леонидовна', NULL, NULL, '', 19),
+(96, 'Брагин Александр Александрович', NULL, NULL, '', 20),
+(97, 'Бубись Наталья Ярославовна', NULL, NULL, '', 20),
+(98, 'Долгополова Анастасия Юрьевна', NULL, NULL, '', 20),
+(99, 'Кутковская Анастасия Владимировна', NULL, NULL, '', 20),
+(100, 'Павлюк Виталий Андреевич', NULL, NULL, '', 20),
+(101, 'Полякова Наталья Владимировна', NULL, NULL, '', 20),
+(102, 'Сушилов Станислав Валерьевич', NULL, NULL, '', 20),
+(103, 'Титаренко Татьяна Алексеевна', NULL, NULL, '', 20),
+(104, 'Витовский Антон Юрьевич', NULL, NULL, '', 3),
+(105, 'Гресько Вячеслав Николаевич', NULL, NULL, '', 3),
+(106, 'Козачок Алина Евгеньевна', NULL, NULL, '', 3),
+(107, 'Легач Александр Юрьевич', NULL, NULL, '', 3),
+(108, 'Несмиян Ксения Сергеевна', NULL, NULL, '', 3),
+(109, 'Пятикоп Анастасия Александровна', NULL, NULL, '', 3),
+(110, 'Яценко Вита Юрьевна', NULL, NULL, '', 3),
+(111, 'Батюк Олег Анатольевич', NULL, NULL, '', 4),
+(112, 'Одарченко Георгий Сергеевич', NULL, NULL, '', 4),
+(113, 'Хечоян Арсений Врежикович', NULL, NULL, '', 4),
+(114, 'Чакаров Сократ Дмитриевич', NULL, NULL, '', 4),
+(115, 'Шевченко Александр Юрьевич', NULL, NULL, '', 4),
+(116, 'Сергиенко Игорь Юрьевич', NULL, NULL, '', 4);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `subjects`
+-- Структура таблиці `subjects`
 --
 
 CREATE TABLE IF NOT EXISTS `subjects` (
@@ -1912,7 +1913,7 @@ CREATE TABLE IF NOT EXISTS `subjects` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
 
 --
--- Дамп данных таблицы `subjects`
+-- Дамп даних таблиці `subjects`
 --
 
 INSERT INTO `subjects` (`subject_id`, `subject_title`, `subject_credits`, `lector_id`) VALUES
@@ -1947,37 +1948,37 @@ INSERT INTO `subjects` (`subject_id`, `subject_title`, `subject_credits`, `lecto
 (30, 'Программирование', 5, 1);
 
 --
--- Ограничения внешнего ключа сохраненных таблиц
+-- Обмеження зовнішнього ключа збережених таблиць
 --
 
 --
--- Ограничения внешнего ключа таблицы `grades`
+-- Обмеження зовнішнього ключа таблиці `grades`
 --
 ALTER TABLE `grades`
   ADD CONSTRAINT `grades_fk1` FOREIGN KEY (`group_module_id`) REFERENCES `groups_modules` (`group_module_id`),
   ADD CONSTRAINT `grades_fk2` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`);
 
 --
--- Ограничения внешнего ключа таблицы `groups_modules`
+-- Обмеження зовнішнього ключа таблиці `groups_modules`
 --
 ALTER TABLE `groups_modules`
   ADD CONSTRAINT `groups_modules_fk1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`group_id`),
   ADD CONSTRAINT `groups_modules_fk2` FOREIGN KEY (`module_id`) REFERENCES `modules` (`module_id`);
 
 --
--- Ограничения внешнего ключа таблицы `modules`
+-- Обмеження зовнішнього ключа таблиці `modules`
 --
 ALTER TABLE `modules`
   ADD CONSTRAINT `modules_fk1` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`subject_id`);
 
 --
--- Ограничения внешнего ключа таблицы `students`
+-- Обмеження зовнішнього ключа таблиці `students`
 --
 ALTER TABLE `students`
   ADD CONSTRAINT `students_fk1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`group_id`);
 
 --
--- Ограничения внешнего ключа таблицы `subjects`
+-- Обмеження зовнішнього ключа таблиці `subjects`
 --
 ALTER TABLE `subjects`
   ADD CONSTRAINT `subjects_fk1` FOREIGN KEY (`lector_id`) REFERENCES `lectors` (`lector_id`);
