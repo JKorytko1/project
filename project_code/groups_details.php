@@ -20,6 +20,9 @@
 	   echo "<td>";
 	   echo  "<b>" ."Студенты" ."</b>";
 	   echo "</td>";
+		echo "<td>";
+		 echo  "<b>" ."Заметки" ."</b>";
+		echo "</td>";
 	   echo "</tr>";
 		$queryStudent = "SELECT * FROM students WHERE group_id='".$groupId."'";
 	    $result=mysql_query($queryStudent);
@@ -27,11 +30,13 @@
 			while($row = mysql_fetch_array($result)){	
 				echo "<tr>";
 				echo"<td>";
-				echo "<a href=\"recordbook.php?studentId=".$row['student_id']."&groupId=".$row['group_id']."\">". $row['student_name']."</a>"; 	
+				echo  $row['student_name']; 	
+				echo"</td>";
+				echo"<td>";
+				echo  $row['student_notes']; 	
 				echo"</td>";
 				echo "</tr>";
-			}		
-				
+				}
 		
 		echo "</table>";
 		}
@@ -42,6 +47,9 @@
 	   echo "<td>";
 	   echo  "<b>" ."Студенты" ."</b>";
 	   echo "</td>";
+	   echo "<td>";
+		echo  "<b>" ."Заметки" ."</b>";
+		echo "</td>";
 	   echo "</tr>";
 		$queryStudent = "SELECT * FROM students WHERE group_id='".$groupId."'";
 	    $result=mysql_query($queryStudent);
@@ -50,6 +58,9 @@
 				echo "<tr>";
 				echo"<td>";
 				echo "<a href=\"recordbook.php?studentId=".$row['student_id']."&groupId=".$row['group_id']."\">". $row['student_name']."</a>"; 	
+				echo"</td>";
+				echo"<td>";
+					echo $row['student_notes'];
 				echo"</td>";
 				echo "</tr>";
 			}		
@@ -65,15 +76,25 @@
 	   echo  "<b>" ."Студенты" ."</b>";
 	   echo "</td>";
 	   echo "</tr>";
-		$queryStudent = "SELECT * FROM students WHERE (group_id='".$groupId."' AND student_email='".$_SESSION['login']."' OR parent_email='".$_SESSION['login']."')";
-	    $result=mysql_query($queryStudent);
-
+		$queryStudent = "SELECT * FROM students WHERE group_id='".$groupId."'";
+	   $result=mysql_query($queryStudent);
+			//echo $row['student_email']=$_SESSION['login'];
 			while($row = mysql_fetch_array($result)){	
-				echo "<tr>";
-				echo"<td>";
-				echo "<a href=\"recordbook.php?studentId=".$row['student_id']."&groupId=".$row['group_id']."\">". $row['student_name']."</a>"; 	
-				echo"</td>";
-				echo "</tr>";
+		//	echo $row['student_email']=$_SESSION['login'];
+				if ($row['student_email']==$_SESSION['login'] || $row['parent_email']==$_SESSION['login'] ){
+						echo "<tr>";
+						echo"<td>";
+						echo "<a href=\"recordbook.php?studentId=".$row['student_id']."&groupId=".$row['group_id']."\" style=\"color: red\">". $row['student_name']."</a>"; 	
+						echo"</td>";
+						echo "</tr>";
+				}else {
+						echo "<tr>";
+						echo"<td>";
+						echo $row['student_name']; 	
+						echo"</td>";
+						echo "</tr>";
+				}
+			
 			}		
 				
 		

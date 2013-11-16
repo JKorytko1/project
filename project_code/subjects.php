@@ -12,15 +12,51 @@
 	$role=$acess['role'];
 	
 	if (!empty($_SESSION['login']) && $role==1){ //Преподаватель
-		echo"<table border=2 cellpadding=0 cellspacing=0>";
+		/*echo"<table border=2 cellpadding=0 cellspacing=0>";
 		echo"<TR><TH>Предмет</TH><TH>Кредиты</TH><TH>Преподаватель</TH></TR>";
 		while($row=mysql_fetch_array($result)){
 			$query2="select lector_name from lectors where lector_id=".$row['lector_id'];
 			$resultlectors=mysql_query($query2);
 			$rowlector=mysql_fetch_array($resultlectors);
-			echo"<tr><td><a href=\"subjects_details.php?subjectId=".$row['subject_id']."\">".$row['subject_title']."</td><td>".$row['subject_credits']."</td><td>".$rowlector['lector_name']."</td></tr>";
+			echo"<tr><td><a href=\"subjects_details.php?subjectId=".$row['subject_id']."\">".$row['subject_title']."</td><td>".$row['subject_credits']."</td>
+					 <td>".$rowlector['lector_name']."</td></tr>";*/
+	
+		echo"<table border=2 cellpadding=0 cellspacing=0>";
+		echo"<TR><TH>Предмет</TH><TH>Кредиты</TH><TH>Преподаватель</TH></TR>";
+		
+		//$row=mysql_fetch_array($result);
+		$querySubject="SELECT l.lector_name,s.subject_id FROM lectors l JOIN subjects s ON l.lector_login='".$_SESSION['login']."'
+						 AND l.lector_id=s.lector_id";
+		
+		$subjectResult=mysql_query($querySubject) or die(mysql_error());
+		$getSubject=mysql_fetch_array($subjectResult);
+		
+		
+		
+		while($row=mysql_fetch_array($result)){ //берем результаты из каждой строки
+		
+			$query2="select lector_name from lectors where lector_id=".$row['lector_id'];
+			$resultlectors=mysql_query($query2);
+			$rowlector=mysql_fetch_array($resultlectors);
+			
+	
+			if ($getSubject['subject_id']==$row['subject_id']){
+				
+				echo"<tr><td><a href=\"subjects_details.php?subjectId=".$row['subject_id']."\" style=\"color: red\">".$row['subject_title']."</td><td>".$row['subject_credits']."</td>
+					 <td>".$rowlector['lector_name']."</td></tr>";
+									
+				$getSubject=mysql_fetch_array($subjectResult);
+				
+			}
+				else {
+				echo"<tr><td>".$row['subject_title']."</td><td>".$row['subject_credits']."</td>
+					 <td>".$rowlector['lector_name']."</td></tr>";
+					 }
+		
+		
 		}
 		echo"</table>";
+	
 	} elseif(!empty($_SESSION['login']) && $role==2) {//Админ
 		echo"<table border=2 cellpadding=0 cellspacing=0>";
 		echo"<TR><TH>Предмет</TH><TH>Кредиты</TH><TH>Преподаватель</TH></TR>";
@@ -33,12 +69,12 @@
 		echo"</table>";
 	} elseif (!empty($_SESSION['login']) && $role==3){ //Студент и родители
 		echo"<table border=2 cellpadding=0 cellspacing=0>";
-		echo"<TR><TH>Предмет</TH><TH>Кредиты</TH><TH>Преподаватель</TH></TR>";
+		echo"<TR><TH>Предмет</TH><TH>Кредиты</TH><TH>Преподаватель</TH></TR>";//<TH>Кредиты</TH><TH>Преподаватель</TH>
 		while($row=mysql_fetch_array($result)){
 			$query2="select lector_name from lectors where lector_id=".$row['lector_id'];
 			$resultlectors=mysql_query($query2);
 			$rowlector=mysql_fetch_array($resultlectors);
-			echo"<tr><td><a href=\"subjects_details.php?subjectId=".$row['subject_id']."\">".$row['subject_title']."</td><td>".$row['subject_credits']."</td><td>".$rowlector['lector_name']."</td></tr>";
+			echo"<tr><td>".$row['subject_title']."</td><td>".$row['subject_credits']."</td><td>".$rowlector['lector_name']."</td></tr>";
 		}
 	} else{//Незалогиненный
 		echo"<table border=2 cellpadding=0 cellspacing=0>";

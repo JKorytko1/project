@@ -12,25 +12,32 @@
 		$role=$acess['role'];
 		if (!empty($_SESSION['login']) && $role== 1){ //Преподаватель
 			echo"<table border=2 cellpadding=0 cellspacing=0 >";
-			echo"<TR><TH>Преподаватель</TH><TH>Ученая степень</TH><TH>Электронная почта</TH></TR>";
+			echo"<TR><TH>Преподаватель</TH><TH>Ученая степень</TH></TR>";
+			
 			while($row=mysql_fetch_array($result)){
-				echo"<tr><td><a href=\"lectors_details.php?lectorId=".$row['lector_id']."\">".$row['lector_name']."</td><td>".$row['lector_position']."</td><td>".$row['lector_email']."</td>
+				if ($_SESSION['login']==$row['lector_login']){
+				echo"<tr><td><a href=\"lectors_details.php?lectorId=".$row['lector_id']."\" style=\"color: red\">".$row['lector_name']."</td><td>".$row['lector_position']."</td>
 					</tr>";
+			}
+			else {
+				echo"<tr><td>".$row['lector_name']."</td><td>".$row['lector_position']."</td>
+					</tr>";
+			}
 			}
 			echo"</table>";
 		} elseif(!empty($_SESSION['login']) && $role==2){//Админ
 			echo"<table border=2 cellpadding=0 cellspacing=0 >";
-			echo"<TR><TH>Преподаватель</TH><TH>Ученая степень</TH><TH>Электронная почта</TH><TH>Логин</TH><TH>Пароль</TH></TR>";
+			echo"<TR><TH>Преподаватель</TH><TH>Ученая степень</TH><TH>Электронная почта</TH></TR>";
 			while($row=mysql_fetch_array($result)){
 				echo"<tr><td><a href=\"lectors_details.php?lectorId=".$row['lector_id']."\">".$row['lector_name']."</td><td>".$row['lector_position']."</td><td>".$row['lector_email']."</td>
-						<td>".$row['lector_login']."</td><td>".$row['lector_password']."</td></tr>";
+						</tr>";
 			}
 			echo"</table>";
 		} elseif(!empty($_SESSION['login']) && $role==3){//СТудент и родители
 			echo"<table border=2 cellpadding=0 cellspacing=0 >";
 			echo"<TR><TH>Преподаватель</TH><TH>Ученая степень</TH></TR>";
 			while($row=mysql_fetch_array($result)){
-			echo"<tr><td><a href=\"lectors_details.php?lectorId=".$row['lector_id']."\">".$row['lector_name']."</td><td>".$row['lector_position']."</td>
+			echo"<tr><td>".$row['lector_name']."</td><td>".$row['lector_position']."</td>
 				</tr>";
 			}
 			echo"</table>";
