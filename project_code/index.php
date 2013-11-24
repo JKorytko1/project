@@ -11,6 +11,7 @@ require 'connection.php';
   <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <body>
+	
 <center>
 <div class="all">
 <div class ="auth">
@@ -60,12 +61,13 @@ require 'connection.php';
 <a href="index.php">Home</a>
 </div>
 <center>
-	<?
-	include('search/index.php');
+	<?php
+	//include('search/index.php');
 	?>
+	
 	<div class="table">
 	<?php
-		if ($_GET['page']) include($_GET['page']);
+		//if ($_GET['page']) include($_GET['page']);
 	?>
 	</div>
 	</center>

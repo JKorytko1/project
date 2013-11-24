@@ -1,6 +1,11 @@
 <?
 include('index.php');
 include('connection.php');
+	echo "<ul id=\"breadcrumbs\">
+        <li><a href=\"index.php\">Home</a></li>
+        <li><a href=\"list.php?info=subjects\">Subjects</a></li>
+		<li><a href=\"subjects_details.php?subjectId=".$_GET['subjectId']."\">Subjects details</a></li>
+    </ul>";
    mysql_query('SET NAMES utf8');
 	$subjectId=$_GET['subjectId'];
 

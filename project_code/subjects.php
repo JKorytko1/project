@@ -1,7 +1,13 @@
 <?php 
 	include('connection.php');
-	
-	$query="SELECT * FROM subjects";
+	echo "<ul id=\"breadcrumbs\">
+        <li><a href=\"index.php\">Home</a></li>
+        <li><a href=\"list.php?info=subjects\">Subjects</a></li>
+    </ul>";
+	$sort="";
+	if(!empty($_GET['sort'])) 
+		$sort=" ORDER BY subject_title ".$_GET['sort'];
+	$query="SELECT * FROM subjects".$sort;
     $result=mysql_query($query);
 	
 	$query1="(SELECT l.role FROM lectors l WHERE lector_login='".$_SESSION['login']."') UNION 
@@ -11,7 +17,7 @@
 	$acess= mysql_fetch_array($acess_result);
 	$role=$acess['role'];
 	
-	if (!empty($_SESSION['login']) && $role==1){ //Преподаватель
+	if (!empty($_SESSION['login']) && $role==2){ //Преподаватель
 		/*echo"<table border=2 cellpadding=0 cellspacing=0>";
 		echo"<TR><TH>Предмет</TH><TH>Кредиты</TH><TH>Преподаватель</TH></TR>";
 		while($row=mysql_fetch_array($result)){
@@ -57,7 +63,7 @@
 		}
 		echo"</table>";
 	
-	} elseif(!empty($_SESSION['login']) && $role==2) {//Админ
+	} elseif(!empty($_SESSION['login']) && $role==4) {//Админ
 		echo"<table border=2 cellpadding=0 cellspacing=0>";
 		echo"<TR><TH>Предмет</TH><TH>Кредиты</TH><TH>Преподаватель</TH></TR>";
 		while($row=mysql_fetch_array($result)){

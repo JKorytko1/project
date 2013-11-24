@@ -70,15 +70,21 @@ border-radius:5px;
 <div class="links">
 <a href="index.php">Home</a>
 </div>
-<div class="search">
-	<center>
-<form action="search.php" method="post">
-<input name="search" type="text" id="search" size="60">
-</form>
-</center>
-</div>
+	<?php 
+	if (!empty($_SESSION['id'])){
+	echo "<div class=\"search\">";
+	echo "<center>";
+	echo "<form action=\"search.php\" method=\"get\">";
+	
+	echo "<input name=\"search\" type=\"text\" id=\"search\" size=\"60\">";
+	echo "<INPUT TYPE=\"hidden\" NAME=\"table\" VALUE=".$_GET['info'].">";
+	echo "</form>";
+	echo "</center>";
+	echo "</div>";
+	}
+		?>
 		<div>
-		<?
+		<?php
 		
 		if($tmp=='lectors')
 		{

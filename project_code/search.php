@@ -71,8 +71,9 @@ border-radius:5px;
 </div>
 <div class="search">
 	<center>
-<form action="search.php" method="post">
+<form action="search.php" method="get">
 <input name="search" type="text" id="search" size="60">
+<INPUT TYPE="hidden" NAME="table" VALUE="<? echo $_GET['table']; ?>">
 </form>
 </center>
 </div>
@@ -80,7 +81,7 @@ border-radius:5px;
 <?php 
 include("connection.php");
    mysql_query('SET NAMES utf8');
-$search = $_POST['search'];
+$search = $_GET['search'];
 $search = addslashes($search);
 $search = htmlspecialchars($search);
 $search = stripslashes($search);
@@ -88,32 +89,53 @@ $len=strlen($search);
 	if(($search == '') OR ($len<'3')){
 		exit;
 	}
-	if ($table='groups')
+	$table=$_GET['table'];
+	
+	if ($table=='groups')
 	{
 	$query_1 = mysql_query("SELECT * FROM groups WHERE group_name LIKE '%$search%'");
+		echo"<table border=2 cellpadding=0 cellspacing=0>";
+		echo"<TR><TH>Группа</TH></TR>";
 	 while($row_1=mysql_fetch_array($query_1))
 	 {
-			echo "<div>".$row_1['group_name']."</div>";
+			echo "<tr><td><a href=\"groups_details.php?groupId=".$row_1['group_id']."\">".$row_1['group_name']."</td></tr>";
 	}
+		echo "</table>";
 	}
-	if ($table='students')
+	if ($table=='students')
 	{
 	$query_1 = mysql_query("SELECT * FROM students WHERE student_name LIKE '%$search%'");
+		echo"<table border=2 cellpadding=0 cellspacing=0>";
+		echo"<TR><TR><TH>Cтудент</TH></TR>";
 	 while($row_1=mysql_fetch_array($query_1))
 	 {
-			echo "<div>".$row_1['student_name']."</div>";
+			echo "<tr><td><a href=\"recordbook.php?studentId=".$row_1['student_id']."&groupId=".$row_1['group_id']."\">".$row_1['student_name']."</td></tr>";
 	}
+		echo "</table>";
 	}
-	if ($table='lectors')
+	if ($table=='lectors')
 	{
 	$query_1 = mysql_query("SELECT * FROM lectors WHERE lector_name LIKE '%$search%'");
-	 while($row_1=mysql_fetch_array($query_1))
-	 {
-			echo"<tr><td>".$row_1['lector_id']."</td><td><a href=\"lectors_details.php?lectorId=".$row_1['lector_id']."\">".$row_1['lector_name']."</td><td>".$row_1['lector_position']."</td><td>".$row_1['lector_email']."</td>
-		<td>".$row_1['lector_login']."</td><td>".$row_1['lector_password']."</td></tr>";
+	
+			echo"<table border=2 cellpadding=0 cellspacing=0 >";
+			echo"<TR><TH>Преподаватель</TH></TR>";
+	 while($row_1=mysql_fetch_array($query_1)){
+			echo"<tr><td><a href=\"lectors_details.php?lectorId=".$row_1['lector_id']."\">".$row_1['lector_name']."</td></tr>";
 	}
-
+		echo "</table>";
 	}
+	if ($table=='subjects')
+	{
+	$query_1 = mysql_query("SELECT * FROM subjects WHERE subject_title LIKE '%$search%'");
+	
+			echo"<table border=2 cellpadding=0 cellspacing=0 >";
+			echo"<TR><TH>Предмет</TH></TR>";
+	 while($row_1=mysql_fetch_array($query_1)){
+			echo"<tr><td><a href=\"subjects_details.php?subjectId=".$row_1['subject_id']."\">".$row_1['subject_title']."</td></tr>";
+	}
+		echo "</table>";
+	}
+	
 	
 ?>      	
 

@@ -1,6 +1,12 @@
 <?php
 	include('connection.php');
 	include('index.php');
+	
+	echo "<ul id=\"breadcrumbs\">
+        <li><a href=\"index.php\">Home</a></li>
+        <li><a href=\"list.php?info=groups\">Groups</a></li>
+		<li><a href=\"groups_details.php?groupId=".$_GET['groupId']."\">Groups details</a></li>
+    </ul>";
 	  $groupId=$_GET['groupId'];
 		$query1="(SELECT l.role FROM lectors l WHERE lector_login='".$_SESSION['login']."') UNION 
 			 (SELECT s.role FROM students s WHERE student_email='".$_SESSION['login']."' OR parent_email='".$_SESSION['login']."')"; //Определяем роль		 
@@ -13,7 +19,7 @@
 		$result = mysql_query($query);
 		$row = mysql_fetch_array($result);
 		echo $row['group_name']; 
-		if ($role==1){
+		if ($role==2){
 		echo "<table border = 1>";
 		
 		echo "<tr>";
@@ -40,7 +46,7 @@
 		
 		echo "</table>";
 		}
-		if ($role==2){
+		if ($role==4){
 		echo "<table border = 1>";
 		
 		echo "<tr>";

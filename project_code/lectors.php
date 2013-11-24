@@ -1,5 +1,9 @@
 <?php
 	include('connection.php');
+		echo "<ul id=\"breadcrumbs\">
+        <li><a href=\"index.php\">Home</a></li>
+        <li><a href=\"list.php?info=lectors\">Lectors</a></li>
+    </ul>";
  
 		$query="Select * from lectors";
 		$result=mysql_query($query);
@@ -10,7 +14,7 @@
 		$acess_result=mysql_query($query1);
 		$acess= mysql_fetch_array($acess_result);
 		$role=$acess['role'];
-		if (!empty($_SESSION['login']) && $role== 1){ //Преподаватель
+		if (!empty($_SESSION['login']) && $role== 2){ //Преподаватель
 			echo"<table border=2 cellpadding=0 cellspacing=0 >";
 			echo"<TR><TH>Преподаватель</TH><TH>Ученая степень</TH></TR>";
 			
@@ -25,7 +29,7 @@
 			}
 			}
 			echo"</table>";
-		} elseif(!empty($_SESSION['login']) && $role==2){//Админ
+		} elseif(!empty($_SESSION['login']) && $role==4){//Админ
 			echo"<table border=2 cellpadding=0 cellspacing=0 >";
 			echo"<TR><TH>Преподаватель</TH><TH>Ученая степень</TH><TH>Электронная почта</TH></TR>";
 			while($row=mysql_fetch_array($result)){
