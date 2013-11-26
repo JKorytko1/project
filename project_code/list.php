@@ -6,8 +6,8 @@ $tmp=$_GET['info'];
 <head>
 <title>Project I-20б and I-29вс</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <link rel="stylesheet" type="text/css" href="css/index.css">
-  <style>
+  <link rel="stylesheet" type="text/css" href="css/index.css"/>
+   <style>
 body {
 font: 11px Tahoma, "Trebuchet MS", Tahoma, sans-serif; line-height: 1.6em; color: #222;
  }

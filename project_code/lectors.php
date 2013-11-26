@@ -1,9 +1,9 @@
 <?php
 	include('connection.php');
-		echo "<ul id=\"breadcrumbs\">
-        <li><a href=\"index.php\">Home</a></li>
-        <li><a href=\"list.php?info=lectors\">Lectors</a></li>
-    </ul>";
+       	echo "<ul id=\"breadcrumbs\">
+                <li><a href=\"index.php\">Home</a></li>
+                <li><a href=\"list.php?info=lectors\">Lectors</a></li>
+              </ul>";
 		$sort="";
 		if(!empty($_GET['sort'])) 
 		$sort=" ORDER BY lector_name ".$_GET['sort'];
