@@ -5,7 +5,7 @@
         <li><a href=\"index.php\">Home</a></li>
         <li><a href=\"list.php?info=lectors\">Lectors</a></li>
 		<li><a href=\"lectors_details.php?lectorId=".$_GET['lectorId']."\">Lectors details</a></li>
-		<li><a href=\"vedomost.php?groupId=".$_GET['groupId']."&subjectId=".$_GET['subjectId']."\">Vedomost</a></li>
+		<li><a href=\"vedomost.php?groupId=".$_GET['groupId']."&subjectId=".$_GET['subjectId']."\">Subject Sheet</a></li>
 		
     </ul>";
   $groupId=$_GET['groupId'];

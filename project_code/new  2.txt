@@ -1,0 +1,31 @@
+if (!empty($_SESSION['login']) && $role==1){ // Преподаватель
+		echo"<table border=2 cellpadding=0 cellspacing=0>";
+		echo"<TR><TH>Группа</TH></TR>";
+		
+		$queryGroup="SELECT  DISTINCT g.group_name FROM subjects s
+					 JOIN lectors l ON l.lector_login ='".$_SESSION['login']."' AND s.lector_id=l.lector_id
+					 JOIN groups_subjects gs ON gs.subject_id=s.subject_id
+					 JOIN groups g ON gs.group_id=g.group_id";
+		$groupResult=mysql_query($queryGroup);
+		$getGroup=mysql_fetch_array($groupResult);
+		
+		while($row=mysql_fetch_array($result)){ //берем результаты из каждой строк
+			echo"<tr></td><td><a href=\"groups_details.php?groupId=".$row['group_id']."\"> ".$row['group_name']."</td></tr>";
+		
+			if ($getGroup['group_name']==$row['group_name']){
+				echo $row['group_name'];
+			echo "<br>";
+			echo $getGroup['group_name']."<hr>";
+			echo "<br>";
+				//echo"<tr></td><td><a href=\"groups_details.php?groupId=".$row['group_id']."\"> ".$row['group_name']."</td></tr>";
+				$getGroup=mysql_fetch_array($groupResult);
+			//$getGroup=mysql_fetch_array($groupResult);
+			
+				echo $getGroup['group_name'];
+			}
+			else{
+				echo"<tr></td><td>".$row['group_name']."</td></tr>";
+			}
+		echo "</table>"; 
+		}
+	}

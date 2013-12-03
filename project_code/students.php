@@ -30,12 +30,12 @@
 	}
 	elseif(!empty($_SESSION['login']) && $role==4){ //Администратор
 		echo"<table border=2 cellpadding=0 cellspacing=0>";
-		echo"<TR><TH> <a href=\"list.php?info=students&sort=ASC\"> &uarr; </a> </TH><TH>Cтудент</TH><TH><a href=\"list.php?info=students&sort=DESC\">&darr; </a></TH><TH>Группа</TH><TH>Заметки</TH></TR>";
+		echo"<TR><TH> <a href=\"list.php?info=students&sort=ASC\"> &uarr; </a> </TH><TH>Cтудент</TH><TH><a href=\"list.php?info=students&sort=DESC\">&darr; </a></TH><TH>Группа</TH><TH>Заметки</TH><TH>Эл. Почта</TH></TR>";
 		while($row=mysql_fetch_array($result)){
 			$query2="select group_name from groups where group_id=".$row['group_id'];
 			$resultgroups=mysql_query($query2);
 			$rowgroup=mysql_fetch_array($resultgroups);
-			echo"<tr><td colspan=\"3\">".$row['student_name']."</td><td>".$rowgroup['group_name']."</td><td>".$row['student_notes']."</td></tr>";
+			echo"<tr><td colspan=\"3\"><a href=\"recordbook.php?studentId=".$row['student_id']."&groupId=".$row['group_id']."\">". $row['student_name']."</a></td><td>".$rowgroup['group_name']."</td><td>".$row['student_notes']."</td><td>".$row['student_email']."</td></tr>";
 			
 		}
 		echo"</table>";

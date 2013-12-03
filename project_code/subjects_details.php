@@ -31,40 +31,23 @@ include('connection.php');
 (select subject_id from subjects where subject_id=".$subjectId."))";
 	$result = mysql_query($queryGroup);
 	while($row = mysql_fetch_array($result)){
+		$querySemester = "SELECT semester  FROM groups_subjects where subject_id=".$subjectId;
+    
+		$result1=mysql_query($querySemester);
+		
+		$row1 = mysql_fetch_array($result1);
+		
+		$querylector = "SELECT lector_name FROM lectors where lector_id in (select lector_id from subjects where subject_id in (select subject_id from groups_subjects where subject_id=".$subjectId."))";
+    
+		$result2=mysql_query($querylector);
+		
+		$row2 = mysql_fetch_array($result2);
 		echo "<tr>";
-		echo"<td>".
-	   "<a href=\"vedomost.php?subjectId=".$subjectId."&groupId=".$row['group_id']."\">".$row['group_name'] . "</a>"
-	
-	."</td>";
-	
-	$querySemester = "SELECT semester  FROM groups_subjects where subject_id=".$subjectId;
-    
-		$result=mysql_query($querySemester);
-		
-		$row = mysql_fetch_array($result);
-		
-		echo"<td>"
-			.$row['semester']
-			
-			."</td>";
-			
-			$querylector = "SELECT lector_name FROM lectors where lector_id in (select lector_id from subjects where subject_id in (select subject_id from groups_subjects where subject_id=".$subjectId."))";
-    
-		$result=mysql_query($querylector);
-		
-		$row = mysql_fetch_array($result);
-		
-		echo"<td>"
-			.$row['lector_name']
-			
-			."</td>";
-			
-			
-	
-	
-			
-			
-	echo "</tr>";
+		echo"<td><a href=\"vedomost.php?subjectId=".$subjectId."&groupId=".$row['group_id']."\">".$row['group_name']."</a>"."</td>".
+			"<td><a href=\"vedomost.php?subjectId=".$subjectId."&groupId=".$row['group_id']."\">".$row1['semester']."</a>"."</td>".
+			"<td><a href=\"vedomost.php?subjectId=".$subjectId."&groupId=".$row['group_id']."\">".$row2['lector_name']."</a>"."</td>";
+		 
+		echo "</tr>";
 	}
 	
 	
