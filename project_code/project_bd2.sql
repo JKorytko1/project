@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Час створення: Гру 05 2013 р., 17:27
+-- Час створення: Гру 06 2013 р., 00:15
 -- Версія сервера: 5.5.23
 -- Версія PHP: 5.3.26
 
@@ -2590,7 +2590,8 @@ INSERT INTO `grades` (`group_module_id`, `student_id`, `grade`) VALUES
 (166, 32, '4B'),
 (167, 32, '4B'),
 (168, 32, '4C'),
-(169, 32, '5B');
+(169, 32, '5B'),
+(10, 6, '1');
 
 -- --------------------------------------------------------
 
@@ -2932,7 +2933,7 @@ INSERT INTO `lectors` (`lector_id`, `lector_name`, `lector_position`, `lector_em
 (12, 'Ольшанский Станислав Васильевич', 'Кандидат физико-математических наук, доцент', NULL, NULL, NULL, NULL),
 (13, 'Галас Олег Сергеевич', 'Кандидат технических наук, младший научный сотрудник', NULL, NULL, NULL, NULL),
 (14, 'Хацько Наталия Евгениевна', 'Ассистент', NULL, NULL, NULL, NULL),
-(15, 'Наумов Иван Владимирович', 'Ассистент', NULL, NULL, NULL, NULL),
+(15, 'Наумов Иван Владимирович', 'Ассистент', NULL, 'INaumov', '321', 2),
 (17, 'Гудзенко Александр Валерьевич', 'Ассистент', NULL, NULL, NULL, NULL),
 (18, 'Гризун Мария Николаевна', 'Ассистент', NULL, NULL, NULL, NULL);
 
@@ -3058,12 +3059,12 @@ CREATE TABLE IF NOT EXISTS `students` (
 --
 
 INSERT INTO `students` (`student_id`, `student_name`, `student_notes`, `student_email`, `parent_email`, `group_id`, `role`, `pwd`) VALUES
-(1, 'Ваколюк Яков Владимирович', 'Профорг группы', 'y.vakolyuk@profkom-khpi.org', '', 1, 3, 1),
+(1, 'Ваколюк Яков Владимирович', 'Профорг группы', 'y.vakolyuk@profkom-khpi.org', 'mama@parent.ru', 1, 3, 1),
 (2, 'Дачко Оксана Анатольевна', NULL, 'shusterman1@yandex.ru', '', 1, 3, 0),
 (3, 'Лемишенко Олег Александрович', 'Староста группы', 'leplushin@gmail.com', '', 1, 3, 0),
 (4, 'Рожовецкий Евгений Олегович', NULL, 'reg.dfe1@gmail.com', '', 1, 3, 0),
 (5, 'Снопов Дмитрий Евгеньевич', NULL, 'snopovdm@gmail.com', '', 1, 3, 0),
-(6, 'Сирик Максим Владимирович', NULL, 'maxim.sirik@gmail.com', '', 1, 3, 1),
+(6, 'Сирик Максим Владимирович', NULL, 'maxim.sirik@gmail.com', 'net@email.com', 1, 3, 12),
 (7, 'Торба Федор Иванович', NULL, 'fed.tor.kirzone@gmail.com', '', 1, 3, 0),
 (8, 'Щербина Максим Александрович', NULL, 'big-max93@mail.ru', '', 1, 3, 0),
 (9, 'Быковский Андрей Владимирович', NULL, 'andrewjdanov@mail.ru\r\n', '', 5, 3, 0),
@@ -3083,7 +3084,7 @@ INSERT INTO `students` (`student_id`, `student_name`, `student_notes`, `student_
 (23, 'Головач Ирина Александровна', NULL, NULL, '', 6, 3, 0),
 (24, 'Дрозд Анна Анатольевна', NULL, NULL, '', 6, 3, 0),
 (25, 'Ермаков Даниель Александрович', NULL, 'dan-ermakov@rambler.ru', '', 6, 3, 0),
-(26, 'Игнатьев Ярослав Витальевич', NULL, 'jar2010@mail.ru', '', 6, 3, 0),
+(26, 'Игнатьев Ярослав Витальевич', NULL, 'jar2010@mail.ru', 'p-email@mail.ru', 6, 3, 123),
 (27, 'Кириченко Ирина Юрьевна', NULL, NULL, '', 6, 3, 0),
 (28, 'Коновалов Николай Владимирович', NULL, 'konovalow@i.ua', '', 6, 3, 0),
 (29, 'Кравченко Елена Александровна', NULL, 'elena_kravchenko_1993@mail.ru', '', 6, 3, 0),
