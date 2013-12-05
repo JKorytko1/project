@@ -2,8 +2,8 @@
 -- version 4.0.3
 -- http://www.phpmyadmin.net
 --
--- Хост: localhost
--- Час створення: Лис 24 2013 р., 12:23
+-- Хост: 127.0.0.1
+-- Час створення: Гру 05 2013 р., 17:27
 -- Версія сервера: 5.5.23
 -- Версія PHP: 5.3.26
 
@@ -2918,11 +2918,11 @@ CREATE TABLE IF NOT EXISTS `lectors` (
 --
 
 INSERT INTO `lectors` (`lector_id`, `lector_name`, `lector_position`, `lector_email`, `lector_login`, `lector_password`, `role`) VALUES
-(1, 'Корытко Юлия Николаевна', 'Кандидат технических наук', 'juliakorytko@gmail.com', 'julia_korytko', '1', 2),
+(1, 'Корытко Юлия Николаевна', 'Кандидат технических наук, доцент', 'juliakorytko@gmail.com', 'julia_korytko', '1', 2),
 (2, 'Асютин Алексей Дмитриевич', 'Ассистент', 'sutok85@gmail.com', 'AAsutin', '1', 2),
-(3, 'Некрасова Мария Владимирона', 'Старший преподаватель', '', 'MNekrasova', '', NULL),
-(4, 'Бреславский Дмитрий Васильевич', 'Доктор технических наук, декан факультета, заведующий кафедрой, профессор', 'brdm@kpi.kharkov.ua', 'brdm', '1', 4),
-(5, 'Плаксий Юрий Андреевич', 'Исполняющий обязанности заведующего кафедрой, кандидат технических наук', NULL, NULL, NULL, NULL),
+(3, 'Некрасова Мария Владимирона', 'Доцент', '', 'MNekrasova', '', NULL),
+(4, 'Бреславский Дмитрий Васильевич', 'Доктор технических наук, профессор, декан инженерно-физического факультета', 'brdm@kpi.kharkov.ua', 'brdm', '1', 4),
+(5, 'Плаксий Юрий Андреевич', 'Кандидат технических наук, профессор, исполняющий обязанности заведующего кафедрой', NULL, NULL, NULL, NULL),
 (6, 'Андреев Юрий Михайлович', 'Доктор технических наук, профессор', NULL, NULL, NULL, NULL),
 (7, 'Успенский Валерий Борисович', 'Доктор технических наук, профессор', NULL, NULL, NULL, NULL),
 (8, 'Шипулина Людмила Васильевна', 'Кандидат технических наук, доцент', NULL, NULL, NULL, NULL),
@@ -2948,7 +2948,7 @@ CREATE TABLE IF NOT EXISTS `modules` (
   `subject_id` int(10) DEFAULT NULL,
   PRIMARY KEY (`module_id`),
   KEY `modules_fk1` (`subject_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=78 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=79 ;
 
 --
 -- Дамп даних таблиці `modules`
@@ -3033,8 +3033,6 @@ INSERT INTO `modules` (`module_id`, `module_name`, `subject_id`) VALUES
 (76, 'Итоговая оценка', 29),
 (77, 'Итоговая оценка', 30),
 (78, 'в качестве - основы использования', 1);
-
-
 
 -- --------------------------------------------------------
 
