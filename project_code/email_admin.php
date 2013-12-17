@@ -72,8 +72,8 @@
 		echo "//////".$admdata[0]['lector_email']."//////<br>";
 		for($i=0; $i < count($newname); $i++)
 		if($i==0)
-			$admtext.= "<ul type='square'><li><b>У преподователя&nbsp; <i>".$newname[$i]."</i>&nbsp; по предмету:</b></li></ul>".$newtext[$i];
-		else $admtext.= "<br><ul type='square'><li><b>У преподователя&nbsp; <i>".$newname[$i]."</i>&nbsp; по предмету:</b></li></ul>".$newtext[$i];
+			$admtext.= "<ul type='square'><li><b>У преподавателя&nbsp; <i>".$newname[$i]."</i>&nbsp; по предмету:</b></li></ul>".$newtext[$i];
+		else $admtext.= "<br><ul type='square'><li><b>У преподавателя&nbsp; <i>".$newname[$i]."</i>&nbsp; по предмету:</b></li></ul>".$newtext[$i];
 		$admtext.=$footer;
 		echo $header.$admtext;
 	}
