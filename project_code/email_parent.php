@@ -76,14 +76,14 @@
 	}
 	if(!$emptyarr)
 		for($i=0; $i < count($newemail); $i++)
-			echo "/////////////////////".$newemail[$i]."/////////////////////<br>".$newname[$i]."<br><br>".$newtext[$i]."<br>";
-	/*$header = 'MIME-Version: 1.0' . "\r\n" . 'Content-type: text/html; charset=UTF-8' . "\r\n"; 
+			//echo "/////////////////////".$newemail[$i]."/////////////////////<br>".$newname[$i]."<br><br>".$newtext[$i]."<br>";
+	$header = 'MIME-Version: 1.0' . "\r\n" . 'Content-type: text/html; charset=UTF-8' . "\r\n"; 
 	$i = 0; 
 	if(!$emptyarr)
 		while( $i<count($newemail)) 
 		{
 			mail ($newemail[$i], "Родитель студента", $newname[$i]."<br><br>".$newtext[$i], $header);
 			$i++; 
-		}  */
+		}  
 
 ?>

@@ -69,17 +69,17 @@
 	Спасибо за понимание, Команда СПУ.<br><br><br>";
 	if(!$emptyarr)
 	{
-		echo "//////".$admdata[0]['lector_email']."//////<br>";
+		//echo "//////".$admdata[0]['lector_email']."//////<br>";
 		for($i=0; $i < count($newname); $i++)
 		if($i==0)
 			$admtext.= "<ul type='square'><li><b>У преподавателя&nbsp; <i>".$newname[$i]."</i>&nbsp; по предмету:</b></li></ul>".$newtext[$i];
 		else $admtext.= "<br><ul type='square'><li><b>У преподавателя&nbsp; <i>".$newname[$i]."</i>&nbsp; по предмету:</b></li></ul>".$newtext[$i];
 		$admtext.=$footer;
-		echo $header.$admtext;
+		//echo $header.$admtext;
 	}
-	/*$headercoding = 'MIME-Version: 1.0' . "\r\n" . 'Content-type: text/html; charset=UTF-8' . "\r\n"; 
+	$headercoding = 'MIME-Version: 1.0' . "\r\n" . 'Content-type: text/html; charset=UTF-8' . "\r\n"; 
 	if(!$emptyarr)
-		mail ($admdata[0]['lector_email'], "Администратор", $header.$admtext, $headercoding);*/
+		mail ($admdata[0]['lector_email'], "Администратор", $header.$admtext, $headercoding);
 
 
 ?>
